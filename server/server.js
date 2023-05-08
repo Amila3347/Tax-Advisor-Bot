@@ -34,9 +34,10 @@ app.post('/', async (req, res) => {
       model: "gpt-3.5-turbo",
 //       model: "ada:ft-tax-advisor:tax-advisor-bot-2023-05-07-03-34-33",
 //       model: "gpt-3.5-turbo-0301",
-      messages: [{ role: "user", content: `${prompt}` }],
+      messages: [{ role: "user", content: `${response.data.choices[0].message.content}+${prompt}` }],
       temperature: 1.0,
       max_tokens: 200,
+
     });
 
     res.status(200).send({
