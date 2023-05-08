@@ -29,12 +29,14 @@ app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
-    const response = await openai.createChatCompletion({
+    const response = await openai.createCompletion({
 //       model: "davinci:ft-personal-2023-05-06-08-33-20",
-      model: "gpt-3.5-turbo",
+      // model: "gpt-3.5-turbo",
 //       model: "ada:ft-tax-advisor:tax-advisor-bot-2023-05-07-03-34-33",
 //       model: "gpt-3.5-turbo-0301",
-      messages: [{ role: "user", content: `${response.data.choices[0].message.content}+${prompt}` }],
+      model: "text-davinci-003",
+      context: `${response.data.choices[0].message.content}`,
+      messages: [{ role: "user", content: `${prompt}` }],
       temperature: 1.0,
       max_tokens: 200,
 
